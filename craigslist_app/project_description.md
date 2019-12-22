@@ -1,0 +1,1 @@
+It is a project aimed at building a website based on craigslist.org in a more user-friendly form than the original website, which has a very modest appearance. I used the beautiful soup library for page scraping.

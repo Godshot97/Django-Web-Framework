@@ -1,0 +1,34 @@
+{%  extends "blog_app/base.html "%}
+
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">{{ object.author }}</a>
+          <small class="text-muted">{{ object.date_posted|date:"d F, Y" }}</small>
+          {% if object.author == user %}
+            <div>
+              <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+              <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+            </div>
+          {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+      </div>
+  </article>
+    <a href="{% url 'add-comment' object.id %}" class="btn btn-info btn-sm mt-1 mb-1">Add comment</a>
+    {% for comment in comments %}
+      {% if comment.post == object %}
+        <div class="article-metadata">
+            <small>{{ comment.add_date|date:"M/d/Y" }} <b>{{ comment.author }}</b></small>
+              {% if comment.author == user %}
+                <a href="{% url 'delete-comment' comment.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+              {% endif %}
+            <p>{{ comment.comm_content }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  
+{% endblock %}
