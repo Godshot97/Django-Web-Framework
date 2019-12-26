@@ -9,11 +9,10 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    # dunder method
     def __str__(self):
         return self.title
 
-    # function which return full path (string) 
+    # return full path (string) 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
