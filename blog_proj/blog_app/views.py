@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 #from django.http import HttpResponse
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
 from .models import Post, Comment
 from django.contrib.auth.models import User
+from .forms import CommentCreateForm
 import datetime
 
 def about(request):
@@ -58,8 +59,20 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.all()[::-1]
+        context['comm_form'] = CommentCreateForm()
         return context
 
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':  
+            comm_form = CommentCreateForm(request.POST)
+            comm_form.instance.post = Post.objects.get(id=self.kwargs.get('pk'))
+            comm_form.instance.author = self.request.user 
+            comm_form.save()
+            return redirect('post-detail', pk=self.kwargs.get('pk'))
+        else:
+            comm_form = CommentCreateForm()
+            return redirect('post-detail', pk=self.kwargs.get('pk'))
+    
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -96,7 +109,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-
+'''
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     template_name = "blog_app/add_comment.html"
@@ -106,7 +119,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         form.instance.post = Post.objects.get(id=self.kwargs.get('pk'))
         form.instance.author = self.request.user 
         return super().form_valid(form) 
-
+'''
 
 class CommentDeleteView(DeleteView):
     model = Comment

@@ -9,7 +9,7 @@ class CustomUCF(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2'] # zdefiniowanie jakie pola będą w formluarzu w podanej kolejności
+        fields = ['username', 'email', 'password1', 'password2'] 
 
 
 class UserUpdateForm(forms.ModelForm):
