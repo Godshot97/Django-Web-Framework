@@ -63,7 +63,7 @@ class PostDetailView(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        if request.method == 'POST':  
+        if request.method == 'POST' and request.user.is_authenticated:  
             comm_form = CommentCreateForm(request.POST)
             comm_form.instance.post = Post.objects.get(id=self.kwargs.get('pk'))
             comm_form.instance.author = self.request.user 
@@ -71,8 +71,8 @@ class PostDetailView(DetailView):
             return redirect('post-detail', pk=self.kwargs.get('pk'))
         else:
             comm_form = CommentCreateForm()
-            return redirect('post-detail', pk=self.kwargs.get('pk'))
-    
+            #return redirect('post-detail', pk=self.kwargs.get('pk'))
+            return redirect('login')
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
