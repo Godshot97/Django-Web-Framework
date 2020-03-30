@@ -1,0 +1,26 @@
+{% extends "wydatki_app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+    <title>Register</title>
+{% endblock header %}
+
+{% block main_content %}
+    <div id="grid-container">
+        
+        <div id="left"></div>
+        
+        <div id="center">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <center><button type="submit" class="btn btn-info">Załóż konto</button></center>
+                <hr>
+                <small>Masz już konto? <a href="{% url 'login_view' %}">Zaloguj się</a></small>
+            </form>
+        </div>
+        
+        <div id="right"></div> 
+
+    </div>
+{% endblock main_content %}

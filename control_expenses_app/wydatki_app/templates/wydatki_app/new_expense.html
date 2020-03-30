@@ -1,0 +1,14 @@
+{% extends "wydatki_app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+    <title>Add item</title>
+{% endblock header %}
+
+{% block main_content %}
+    <form method="POST" style="width: 40vh; padding: 10px; border: 1px solid black; margin: 20px;">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Dodaj">
+    </form>
+{% endblock main_content %}
