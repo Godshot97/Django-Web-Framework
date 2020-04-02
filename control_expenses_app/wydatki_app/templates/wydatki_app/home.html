@@ -1,0 +1,67 @@
+{% extends "wydatki_app/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'wydatki_app/home_style.css' %}">    
+    <title>Home</title>
+{% endblock header %}
+
+{% block main_content %}
+    <div id="grid_container">
+
+        <div id="expenses_section" class="shadow bg-white">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Data zakupu</th>
+                    <th scope="col">Opcje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                        <tr>
+                            <td>{{ expense.name }}</td>
+                            <td>{{ expense.price }}</td>
+                            <td>{{ expense.get_category_display }}</td>
+                            <td>{{ expense.purchase_date|date:'d-m-Y' }}</td>
+                            <td>Edytuj/Usuń</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="new_and_filters_section" class="shadow bg-white">
+            <form method="POST" id="new_expense_form">
+                {% csrf_token %}
+                <fieldset>
+                    <legend class="w-auto">Dodaj nowy wydatek</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.category|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.price|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.purchase_date|as_crispy_field }}
+                        </div>
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Dodaj</button>
+                    </center>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+{% endblock main_content %}

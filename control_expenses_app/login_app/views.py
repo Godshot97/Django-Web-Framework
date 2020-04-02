@@ -31,7 +31,7 @@ def login_view(request):
     user = request.user
 
     if user.is_authenticated:
-        return redirect('new_expense_view')
+        return redirect('home_view')
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -42,7 +42,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect('new_expense_view')
+                return redirect('home_view')
     else:
         form = LoginForm()
 

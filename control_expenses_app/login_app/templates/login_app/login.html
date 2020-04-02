@@ -1,7 +1,9 @@
 {% extends "wydatki_app/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block header %}
+    <link rel="stylesheet" href="{% static 'login_app/forms_style.css' %}">
     <title>Login</title>
 {% endblock header %}
 

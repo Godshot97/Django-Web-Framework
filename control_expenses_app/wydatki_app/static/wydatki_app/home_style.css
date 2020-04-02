@@ -1,0 +1,47 @@
+#grid_container{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+	margin: 0;
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	grid-template-rows: auto;
+    grid-gap:30px;
+}
+
+#expenses_section{
+    background: white;
+}
+
+#new_and_filters_section{
+    background: white;
+}
+
+#new_expense_form{
+    margin: 0 10px;
+    padding: 15px;
+    background: white;
+}
+
+fieldset{
+    border: 1px solid #ADD8E6; 
+    padding: 10px 15px 20px 15px;
+}
+
+legend{
+    font-size: 18px; 
+    font-family: Calibri;
+}
+
+.single_expense{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+    background: yellow;
+    margin: 0 10px 5px 10px;
+    padding: 10px; 
+}
+
+
+

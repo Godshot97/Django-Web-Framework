@@ -6,7 +6,7 @@ from .forms import NewExpenseModelForm
 from .models import Expense
 
 @login_required
-def new_expense(request):
+def home(request):
 
     if request.method == 'POST':
 
@@ -16,9 +16,11 @@ def new_expense(request):
             #instance = Expense(**form.cleaned_data)
             form.save()
 
-            return redirect('new_expense')
+            return redirect('home_view')
 
     else:
         form = NewExpenseModelForm()
 
-    return render(request, "wydatki_app/new_expense.html", {'form': form})
+    expenses = Expense.objects.all().order_by('-purchase_date')
+
+    return render(request, "wydatki_app/home.html", {'form': form, 'expenses': expenses})
