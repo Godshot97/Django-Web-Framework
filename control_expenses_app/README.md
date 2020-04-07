@@ -9,5 +9,5 @@
 <li>Archiwum wydatków z możliwością filtrowania po określonych przedziałach czasowych.</li>
 <li>Określanie swoich miesięcznych limitów wydatków (informacja ile środków pozostało do wykorzystania).</li>
 <li>Graficzna prezentacja z podsumowania wydatków, na wykresach.</li>
-<li>System logowania / kont urzytkowników.</li>
+<li>System logowania / kont użytkowników.</li>
 </ul>
