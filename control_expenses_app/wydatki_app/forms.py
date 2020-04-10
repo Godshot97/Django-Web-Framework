@@ -6,6 +6,6 @@ class NewExpenseModelForm(ModelForm):
 
     class Meta:
         model = Expense
-        fields = '__all__'
+        fields = ('name','price','category','purchase_date')
         labels = {'name': 'Nazwa', 'price': 'Cena (PLN)', 'category': 'Kategoria', 'purchase_date': 'Data zakupu'}
         widgets = {'purchase_date': DateInput(attrs={'type': 'date'})}

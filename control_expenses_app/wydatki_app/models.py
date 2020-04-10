@@ -1,5 +1,6 @@
 from django.db import models
 
+from login_app.models import Account
 
 
 class Expense(models.Model):
@@ -17,6 +18,7 @@ class Expense(models.Model):
     price = models.FloatField()
     category = models.CharField(max_length=1, choices=CATEGORIES)
     purchase_date = models.DateField()
+    owner = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
     def __str__(self):
