@@ -19,7 +19,7 @@ Pillow==6.2.1
 post==2019.4.13
 psycopg2==2.8.4
 public==2019.4.13
-Pygments==2.5.2
+Pygments==2.7.4
 python-dateutil==2.8.1
 pytz==2019.3
 query-string==2019.4.13
