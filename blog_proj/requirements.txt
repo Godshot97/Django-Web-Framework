@@ -15,7 +15,7 @@ httpie==1.0.3
 idna==2.8
 numpy==1.18.0
 pandas==0.25.3
-Pillow==6.2.1
+Pillow==9.3.0
 post==2019.4.13
 psycopg2==2.8.4
 public==2019.4.13
